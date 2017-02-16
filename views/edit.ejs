@@ -1,0 +1,87 @@
+<div>
+<form class="form-horizontal" role="form">
+  <div class="form-group">
+    <label  for="report_name" class="col-sm-2 control-label">测试单名称</label>
+    <div class="col-sm-9">
+      <input class="form-control" id="report_name"  name="report_name" type="text" value="<%= testDatas.report_name%>">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="tester" class="col-sm-2 control-label">测试人</label>
+    <div class="col-sm-9">
+      <input class="form-control" id="tester"  name="tester" type="text" placeholder="" value="<%= testDatas.tester%>" >
+    </div>
+  </div>
+    <div class="form-group">
+      <label for="producter" class="col-sm-2 control-label">产品</label>
+      <div class="col-sm-9">
+        <input type="text" id="producter" name="producter" class="form-control" placeholder="无产品填none" value="<%= testDatas.producter%>">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="developer" class="col-sm-2 control-label">开发</label>
+      <div class="col-sm-9">
+        <input type="text" id="developer" name="developer" class="form-control" placeholder="" value="<%= testDatas.developer%>">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="test_type" class="col-sm-2 control-label">类型</label>
+      <div class="col-sm-9">
+        <input type="text" id="test_type" name="test_type" class="form-control" placeholder="web还是wap" value="<%= testDatas.type%>" >
+      </div>
+    </div>
+        <div class="form-group">
+      <label for="is_cgi" class="col-sm-2 control-label">cgi内容</label>
+      <div class="col-sm-9">
+        <input type="text" id="is_cgi" class="form-control" name="is_cgi" placeholder="无cgi填无，有则把cgi名称填下,用逗号隔开" value="<%= testDatas.cgi_content%>" >
+      </div>
+     
+    </div>
+    <div class="form-group">
+      <label for="job_progress" class="col-sm-2 control-label">进度</label>
+      <div class="col-sm-9">
+      	<select class="form-control" id="job_progress">
+      	<option value="not started">未开始测试</option>
+      	<option value="Main flow barrier">主流程不通</option>
+      	<option value="Main flow pass">主流程可以走通</option>
+      	<option value="bug less than 3">剩余bug数少于3</option>
+      	<option value="last check">最后一轮校验</option>
+      	<option value="ready">准备上线</option>
+      	<option value="case is not add">已上线，测试用例未补充</option>
+      	<option value="end">已上线，测试用例已补充</option>
+      	
+    	</select>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="tester_status" class="col-sm-2 control-label">状态</label>
+      <div class="col-sm-9">
+        <select class="form-control" id="tester_status">
+        <option value="not started">未开始测试</option>
+      	<option value="testing">正在测试</option>
+      	<option value="waiting for half day">hold住了，预计半天后可测试</option>
+      	<option value="waiting for one day">hold住了，预计1天后可测试</option>
+      	<option value="waiting for more than one day">hold住了，预计大于1天后可测试</option>
+      	<option value="end">已完成</option>
+    	</select>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="test_other" class="col-sm-2 control-label">备注</label>
+      <div class="col-sm-9">
+        <input type="text" id="test_other" class="form-control" placeholder="若hold住，可以简单写下hold住原因，例如：产品需要增加功能等，选填" value="<%= testDatas.remark%>" >
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="plan_end_time" class="col-sm-2 control-label">预计完成时间</label>
+      <div class="col-sm-9">
+        <input type="text" id="plan_end_time" name="plan_end_time" class="form-control" placeholder="格式:2017-2-8" value="<%= testDatas.plan_end_time%>">
+      </div>
+    </div>
+    <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10" id="getid">
+      <button type="submit" class="btn btn-default" data-id="<%= testDatas.report_id%>" data-supplement-id="<%= testDatas.add_for_id%>" id="add_test">提交</button>
+    </div>
+  </div>
+</form>
+</div>

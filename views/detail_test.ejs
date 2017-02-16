@@ -1,0 +1,101 @@
+<div id="container">
+	<table class="table table-hover table-responsive table-bordered">
+		<thead>
+			<tr>
+				<th>名称</th>
+				<th>测试人</th>
+				<th>产品</th>
+				<th>开发</th>
+				<th>进度</th>
+				<th>状态</th>
+				<th>有无cgi</th>
+				
+				<th>类型</th>
+				<th>备注</th>
+				<th>开始时间</th>
+				<th>计划结束时间</th>
+				<th>结束时间</th>
+			</tr>
+		</thead>
+		<tbody >
+			<tr>
+				<td><%= testDatas.sql_for_details.report_name %></td>
+				<td><%= testDatas.sql_for_details.tester %></td>
+				<td><%= testDatas.sql_for_details.producter %></td>
+				<td><%= testDatas.sql_for_details.developer %></td>
+				<td><%= testDatas.sql_for_details.job_progress %></td>
+				<td><%= testDatas.sql_for_details.tester_status %></td>
+				<td><%= testDatas.sql_for_details.cgi_content %></td>
+				
+				<td><%= testDatas.sql_for_details.type %></td>
+				<td><%= testDatas.sql_for_details.remark %></td>
+				<td><%= testDatas.sql_for_details.start_time %></td>
+				<td><%= testDatas.sql_for_details.plan_end_time %></td>
+				<td><%= testDatas.sql_for_details.actual_end_time %></td>
+			</tr>
+
+		</tbody>
+	</table>
+
+	<table class="table table-hover table-responsive table-bordered">
+		<thead>
+			<tr>
+				<th>更新时间</th>
+				<th>进度</th>
+				<th>状态</th>
+				<th>备注</th>
+			</tr>
+		</thead>
+		<tbody >
+		<% for(var i=0;i<testDatas.sql_for_modify.length;i++){ %>
+			<tr>
+				<td><%=testDatas.sql_for_modify[i].update_time%></td>
+				<td><%=testDatas.sql_for_modify[i].job_progress%></td>
+				<td><%=testDatas.sql_for_modify[i].tester_status%></td>
+				
+
+
+				</tr>
+		<% } %>
+		</tbody>
+	</table>
+		<table class="table table-hover table-responsive table-bordered">
+		<thead>
+			<tr>
+				<th>补单名称</th>
+				<th>测试人</th>
+				<th>产品</th>
+				<th>开发</th>
+				<th>进度</th>
+				<th>状态</th>
+				<th>类型</th>
+				<th>有无cgi</th>
+				<th>备注</th>
+				<th>开始时间</th>
+				<th>计划结束时间</th>
+				<th>结束时间</th>
+			</tr>
+		</thead>
+
+ 		<tbody >
+		<% for(var i=0;i<testDatas.sql_for_supplement.length;i++){ %>
+			<tr>
+				<td><%=testDatas.sql_for_supplement[i].report_name%></td>
+				<td><%=testDatas.sql_for_supplement[i].tester%></td>
+				<td><%=testDatas.sql_for_supplement[i].producter%></td>
+				<td><%=testDatas.sql_for_supplement[i].developer%></td>
+				<td><%=testDatas.sql_for_supplement[i].job_progress%></td>
+				<td><%=testDatas.sql_for_supplement[i].tester_status%></td>
+				<td><%=testDatas.sql_for_supplement[i].type%></td>
+				<td><%=testDatas.sql_for_supplement[i].cgi_content%></td>
+				
+				
+				<td><%=testDatas.sql_for_supplement[i].remark%></td>
+				<td><%=testDatas.sql_for_supplement[i].start_time%></td>
+				<td><%=testDatas.sql_for_supplement[i].plan_end_time%></td>
+				<td><%=testDatas.sql_for_supplement[i].actual_end_time%></td>
+				</tr>
+		<% } %>
+		</tbody>
+	</table>
+</div>

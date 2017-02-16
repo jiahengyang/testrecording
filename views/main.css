@@ -1,0 +1,41 @@
+html,body{
+	margin:0;
+	padding:0;
+	height:100%;
+}
+#container{
+	min-height:100%;
+	height:auto !important;
+	height:100%;
+	position:relative;
+	margin-top: 20px;
+	margin-right: 10px;
+	margin-left: 10px;
+}
+
+#header{
+	background:#666666;
+	padding:10px;
+}
+#page{
+	width:960px;
+	margin:0 auto;
+	padding-bottom: 60px;
+}
+#footer{
+	position: absolute;
+	bottom:0;
+	width:100%;
+	height:60px;
+	background:#DDDDDD;
+	clear:both;
+}
+
+.footerword{
+	margin:0;
+	margin-top:20px;
+}
+span.help-block{
+	margin-left: 10px; 
+	color: red;
+} 

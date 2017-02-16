@@ -1,0 +1,35 @@
+{
+	"tests":[{
+	"report_id":1,
+	"tester":"jiaheng",  
+	"operator":"jiaheng",
+	"report_name":"测试1", 
+	"start_time":"2017-2-6",
+	"plan_time":"2017-2-9",
+	"actual_time":"2017-2-8",
+	"job_progress":1,
+	"type":"web",
+	"is_js":"ture",
+	"cgi_name":[],
+	"producter":"none",
+	"developer":"none",
+
+	},
+	{
+	"report_id":1,
+	"tester":"jiaheng", 
+	"operator":"jiaheng",
+	"report_name":"测试2", 
+	"start_time":"2017-2-6",
+	"plan_time":"2017-2-9",
+	"actual_time":"2017-2-8",
+	"job_progress":1,
+	"type":"web",
+	"is_js":"ture",
+	"cgi_name":[],
+	"producter":"none",
+	"developer":"none",
+
+	}],
+	"num":2
+}

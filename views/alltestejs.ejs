@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>测试进度管理</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="main.css" rel="stylesheet" media="screen">
+<link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+<link href="https://cdn.bootcss.com/sweetalert/1.1.3/sweetalert.css" rel="stylesheet">
+<script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="jquery.validate.js"></script>
+<script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://cdn.bootcss.com/sweetalert/1.1.3/sweetalert.min.js"></script>
+<script src="js/laytpl.js"></script>
+<script src="js/laypage/laypage.js"></script>
+<script src="alltest.js"></script>
+</head>
+<body>
+	<%- include("./header.ejs") %>
+	<%- include("./alltestlist.ejs") %>
+</body>
+
+<script id="alllist" type="text/template">
+	{{# if(d.num==0){ }}
+	<tr>
+		<td>
+			<p class="text-center">目前没有单</p>
+		</td>
+	</tr>
+	
+	{{# } else{ }}
+		{{# for(var i=0;i<d.tests.length;i++){ }}
+			<tr >
+				<td>{{ d.tests[i].tester }} </td>
+				{{# if(d.tests[i].job_progress==0){ }}
+				<td>未开始测试</td>
+				{{# } else if(d.tests[i].job_progress==1){ }}
+				<td>主流程不通</td>
+				{{# } else if(d.tests[i].job_progress==2){ }}
+				<td>主流程可以走通</td>
+				{{# } else if(d.tests[i].job_progress==3){ }}
+				<td>剩余bug少于3个</td>
+				{{# } else if(d.tests[i].job_progress==4){ }}
+				<td>最后一轮校验</td>
+				{{# } else if(d.tests[i].job_progress==5){ }}
+				<td>准备上线</td>
+				{{# } else if(d.tests[i].job_progress==6){ }}
+				<td>已上线，测试用例未补充</td>
+				{{# } else if(d.tests[i].job_progress==7){ }}
+				<td>已上线，测试用例已补充</td>
+				{{# } }}
+
+				{{# if(d.tests[i].tester_status==0){ }}
+				<td>未开始测试</td>
+				{{# } else if(d.tests[i].tester_status==1){ }}
+				<td>正在测试</td>
+				{{# } else if(d.tests[i].tester_status==2){ }}
+				<td>hold住了，预计半天后可测试</td>
+				{{# } else if(d.tests[i].tester_status==3){ }}
+				<td>hold住了，预计1天后可测试</td>
+				{{# } else if(d.tests[i].tester_status==4){ }}
+				<td>hold住了，预计大于1天后可测试</td>
+				{{# } else if(d.tests[i].tester_status==5){ }}
+				<td>已上线</td>
+				{{# } }}
+				<td>{{ d.tests[i].type }}</td>
+				<td>{{ d.tests[i].cgi_content }}</td>
+				<td>{{ d.tests[i].producter }}</td>
+				<td>{{ d.tests[i].developer }}</td>
+				<td>{{ d.tests[i].start_time }}</td>
+				<td>{{ d.tests[i].plan_end_time }}</td>				
+			</tr>
+		{{# } }}
+				
+		{{# } }}
+						
+ </script>
+</html>
