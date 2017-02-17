@@ -23,6 +23,7 @@ app.use(express.static(__dirname+"/views"));
 app.set("views","./views");
 app.set('view engine','ejs');
 var selectmytest=require("./views/cgi-js/selectmytest");
+//登录界面
 app.get("/",function(req,res){
 
 	res.render("tmpl/login");
@@ -37,6 +38,7 @@ app.use(session({
   resave: true, // 即使 session 没有被修改，也保存 session 值，默认为 true
   saveUninitialized: false, //
 }));
+//提交登陆
 app.post('/login', function(req,res){
   if (req.body.password != "1234"||req.body.rtxname!="jiahengyang") {
   	console.log("登录账号密码错误");
@@ -55,9 +57,11 @@ app.post('/login', function(req,res){
 });
 
 var url=require("url");
+//我的任务界面
 app.get("/ejs",function(req,res){
 	res.render("tmpl/ejs1");
 })
+//通过ajax发起post请求来获取我的任务的数据
 app.post("/searchtest",function(req,res){
 	var select_info=JSON.stringify(req.body);
 	//console.log("select_info=:"+select_info);
@@ -85,12 +89,13 @@ app.post("/searchtest",function(req,res){
 
 	//res.render("ejs1",{testDatas:testDatas});
 });
-
+//新建任务模板
 app.get("/newtest",function(req,res){
 	res.render("tmpl/addtest");
 })
 var savedata=require("./views/cgi-js/savetest");
 var savemodifydata=require("./views/cgi-js/savemodifydata");
+//提交新建任务
 app.post("/addtest",function(req,res){
 	 var test_info=JSON.stringify(req.body);
 	 savedata(test_info,function(err,data){
@@ -117,6 +122,7 @@ app.post("/addtest",function(req,res){
 
 });
 var deletedata=require("./views/cgi-js/deletetest");
+//删除任务
 app.post("/deletetest",function(req,res){
 	 var test_info=JSON.stringify(req.body);
 	 var ret=deletedata(test_info);
@@ -137,7 +143,7 @@ app.post("/deletetest",function(req,res){
 
 });
 var edittest=require("./views/cgi-js/edittest");
-
+//修改任务页面
 app.get("/edittest",function(req,res){
 	var report_id=url.parse(req.url,true).query;
 	var reportid=JSON.stringify(report_id);
@@ -155,6 +161,7 @@ app.get("/edittest",function(req,res){
 		}
 	});
 });
+//补单页面，提交补单用的是addtest
 app.get("/supplementtest",function(req,res){
 	var report_id=url.parse(req.url,true).query;
 	var reportid=JSON.stringify(report_id);
@@ -164,6 +171,7 @@ app.get("/supplementtest",function(req,res){
 	res.render("tmpl/edittest",{testDatas:testDatas});
 })
 var edittestsave=require("./views/cgi-js/edittestsave");
+//提交修改页面
 app.post("/edittestsave",function(req,res){
 	//console.log("edittestsave");
 	var info=req.body;
@@ -192,9 +200,11 @@ app.post("/edittestsave",function(req,res){
 	 }	
 });
 var readytest=require("./views/cgi-js/readytest");
+//今天要上线的单的页面
 app.get("/readytest",function(req,res){		
 	res.render("tmpl/readyejs");
 });
+//通过ajax发起post请求拿到今天要上线的单，或者按类型搜索
 app.post("/selectreadytest",function(req,res){
 	var test_info=JSON.stringify(req.body);
 	readytest(test_info,function(err,data){
@@ -212,9 +222,11 @@ app.post("/selectreadytest",function(req,res){
 
 });
 var selectbytester=require("./views/cgi-js/selectbytester");
+//查看所有进度页面
 app.get("/alltest",function(req,res){		
 	res.render("tmpl/alltestejs");
 });
+//通过ajax发起post请求拿到所有未完成单的数据，也支持按测试人搜索
 app.post("/selectbytester",function(req,res){
 	var test_info=JSON.stringify(req.body);
 	selectbytester(test_info,function(err,data){
@@ -232,6 +244,7 @@ app.post("/selectbytester",function(req,res){
 
 });
 var detailstest=require("./views/cgi-js/detailstest");
+//任务详情页
 app.get("/detailstest",function(req,res){
 	var report_id=url.parse(req.url,true).query;
 	var reportid=JSON.stringify(report_id);
