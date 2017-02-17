@@ -22,10 +22,10 @@ app.use(bodyParser.urlencoded({
 app.use(express.static(__dirname+"/views"));
 app.set("views","./views");
 app.set('view engine','ejs');
-var selectmytest=require("./views/selectmytest");
+var selectmytest=require("./views/cgi-js/selectmytest");
 app.get("/",function(req,res){
 
-	res.render("login");
+	res.render("tmpl/login");
 
 	//res.render("ejs1",{testDatas:testDatas});
 });
@@ -53,20 +53,14 @@ app.post('/login', function(req,res){
    
   }
 });
-/*app.post("/login",function(req,res){
-	var login_info=JSON.stringify(req.body);
 
-	console.log(login_info);
-
-	//res.render("ejs1",{testDatas:testDatas});
-});*/
 var url=require("url");
 app.get("/ejs",function(req,res){
-	res.render("ejs1");
+	res.render("tmpl/ejs1");
 })
 app.post("/searchtest",function(req,res){
 	var select_info=JSON.stringify(req.body);
-	console.log("select_info=:"+select_info);
+	//console.log("select_info=:"+select_info);
     var operator=select_info.operator;
     var count=select_info.count;
     var begin=select_info.begin;
@@ -93,10 +87,10 @@ app.post("/searchtest",function(req,res){
 });
 
 app.get("/newtest",function(req,res){
-	res.render("addtest");
+	res.render("tmpl/addtest");
 })
-var savedata=require("./views/savetest");
-var savemodifydata=require("./views/savemodifydata");
+var savedata=require("./views/cgi-js/savetest");
+var savemodifydata=require("./views/cgi-js/savemodifydata");
 app.post("/addtest",function(req,res){
 	 var test_info=JSON.stringify(req.body);
 	 savedata(test_info,function(err,data){
@@ -122,11 +116,11 @@ app.post("/addtest",function(req,res){
 
 
 });
-var deletedata=require("./views/deletetest");
+var deletedata=require("./views/cgi-js/deletetest");
 app.post("/deletetest",function(req,res){
 	 var test_info=JSON.stringify(req.body);
 	 var ret=deletedata(test_info);
-	 console.log("ret:"+ret);
+	 //console.log("ret:"+ret);
 	 if(ret==0){
 	 	res.writeHead(200,{"Content-Type":"text/json"});
 	 	resdata={"ret":0,"err_msg":"ok"};
@@ -142,20 +136,20 @@ app.post("/deletetest",function(req,res){
 
 
 });
-var edittest=require("./views/edittest");
+var edittest=require("./views/cgi-js/edittest");
 
 app.get("/edittest",function(req,res){
 	var report_id=url.parse(req.url,true).query;
 	var reportid=JSON.stringify(report_id);
-	console.log("get_report_id:"+reportid)
+	//console.log("get_report_id:"+reportid)
 	edittest(reportid,function(err,data){
 		if(err){
 			console.log("err:"+err);
 		}else{
-			console.log("data:"+data);
+			//console.log("data:"+data);
 			testDatas=JSON.parse(data);
 			
-			res.render("edittest",{testDatas:testDatas});
+			res.render("tmpl/edittest",{testDatas:testDatas});
 			
 			
 		}
@@ -166,24 +160,25 @@ app.get("/supplementtest",function(req,res){
 	var reportid=JSON.stringify(report_id);
 	var testDatas={
 		"add_for_id":report_id.supplementid};
-	console.log("get_report_id:"+reportid)
-	res.render("edittest",{testDatas:testDatas});
+	//console.log("get_report_id:"+reportid)
+	res.render("tmpl/edittest",{testDatas:testDatas});
 })
-var edittestsave=require("./views/edittestsave");
+var edittestsave=require("./views/cgi-js/edittestsave");
 app.post("/edittestsave",function(req,res){
-	console.log("edittestsave");
+	//console.log("edittestsave");
 	var info=req.body;
 	 var test_info=JSON.stringify(req.body);
 	 var modifyData={
 		"report_id":info.report_id,
 		"job_progress":info.job_progress,
 		"tester_status":info.tester_status,
-		"update_time":info.start_time
+		"update_time":info.start_time,
+		"remark":info.test_other
 	};
 	var modifyDatastring=JSON.stringify(modifyData);
 	savemodifydata(modifyDatastring);
 	 var ret=edittestsave(test_info);
-	 console.log("ret:"+ret);
+	 //console.log("ret:"+ret);
 	 if(ret==0){
 	 	res.writeHead(200,{"Content-Type":"text/json"});
 	 	resdata={"ret":0,"err_msg":"ok"};
@@ -196,9 +191,9 @@ app.post("/edittestsave",function(req,res){
 	 	res.end();
 	 }	
 });
-var readytest=require("./views/readytest");
+var readytest=require("./views/cgi-js/readytest");
 app.get("/readytest",function(req,res){		
-	res.render("readyejs");
+	res.render("tmpl/readyejs");
 });
 app.post("/selectreadytest",function(req,res){
 	var test_info=JSON.stringify(req.body);
@@ -206,7 +201,7 @@ app.post("/selectreadytest",function(req,res){
 		if(err){
 			console.log("err:"+err);
 		}else{
-			console.log("data:"+data);
+			//console.log("data:"+data);
 			 var testDatas=JSON.parse(data);
 			
 			res.send(testDatas);
@@ -216,9 +211,9 @@ app.post("/selectreadytest",function(req,res){
 	});
 
 });
-var selectbytester=require("./views/selectbytester");
+var selectbytester=require("./views/cgi-js/selectbytester");
 app.get("/alltest",function(req,res){		
-	res.render("alltestejs");
+	res.render("tmpl/alltestejs");
 });
 app.post("/selectbytester",function(req,res){
 	var test_info=JSON.stringify(req.body);
@@ -226,7 +221,7 @@ app.post("/selectbytester",function(req,res){
 		if(err){
 			console.log("err:"+err);
 		}else{
-			console.log("data:"+data);
+			//console.log("data:"+data);
 			 var testDatas=JSON.parse(data);
 			
 			res.send(testDatas);
@@ -236,19 +231,19 @@ app.post("/selectbytester",function(req,res){
 	});
 
 });
-var detailstest=require("./views/detailstest");
+var detailstest=require("./views/cgi-js/detailstest");
 app.get("/detailstest",function(req,res){
 	var report_id=url.parse(req.url,true).query;
 	var reportid=JSON.stringify(report_id);
-	console.log("get_report_id:"+reportid);
+	//console.log("get_report_id:"+reportid);
 	detailstest(reportid,function(err,data){
 		if(err){
 			console.log("err:"+err);
 		}else{
-			console.log("data:"+data);
+			//console.log("data:"+data);
 			 var testDatas=JSON.parse(data);
 			
-			res.render("details",{testDatas:testDatas});
+			res.render("tmpl/details",{testDatas:testDatas});
 			
 			
 		}
